@@ -11,8 +11,11 @@ const youtubedl = require('youtube-dl');
 	if ( argv[0] && argv[0] != '' ) {
 	
 		var options = [];
-			youtubedl.getInfo(argv[0], options, function(err, info) {
-			  if (err) throw err;
+			youtubedl.getInfo(argv[0], options, function(e, info) {
+			  if (e) {
+					console.log("Erro na captura: ", e);
+					process.exit(1);
+				}
 
 			  let textContent = 'title: [ ' + info.title + ' ]' + "\r\n" + 'description:' + info.description
 
